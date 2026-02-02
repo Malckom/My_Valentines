@@ -19,7 +19,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
         }
 
@@ -178,11 +178,14 @@
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
-            position: absolute;
+            position: fixed;
+            z-index: 9999;
+            transition: left 0.3s ease, top 0.3s ease;
         }
 
         .btn-no.in-card {
             position: relative;
+            z-index: 10;
         }
 
         /* Celebration Overlay */
@@ -394,42 +397,49 @@
             }
         }
 
+        // Get safe position within viewport
+        function getSafePosition() {
+            const btnWidth = noBtn.offsetWidth || 120;
+            const btnHeight = noBtn.offsetHeight || 50;
+            const padding = 20;
+            
+            const maxX = window.innerWidth - btnWidth - padding;
+            const maxY = window.innerHeight - btnHeight - padding;
+            
+            const randomX = Math.min(Math.max(padding, Math.random() * maxX), maxX);
+            const randomY = Math.min(Math.max(padding, Math.random() * maxY), maxY);
+            
+            return { x: randomX, y: randomY };
+        }
+
         // Move the No button away
         function moveButton() {
             escapeCount++;
             
-            // Remove from card flow
+            // Remove from card flow and make it fixed positioned
             noBtn.classList.remove('in-card');
             
-            // Calculate new random position
-            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+            // Get safe random position within viewport
+            const pos = getSafePosition();
             
-            const randomX = Math.max(20, Math.random() * maxX);
-            const randomY = Math.max(20, Math.random() * maxY);
-            
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
+            noBtn.style.left = pos.x + 'px';
+            noBtn.style.top = pos.y + 'px';
             
             // Update counter with funny message
             const message = funnyMessages[Math.min(escapeCount - 1, funnyMessages.length - 1)];
             escapeCounter.textContent = `Escape attempts: ${escapeCount} - ${message}`;
             
-            // Make button smaller after many attempts
-            if (escapeCount > 5) {
-                const scale = Math.max(0.5, 1 - (escapeCount - 5) * 0.1);
-                noBtn.style.transform = `scale(${scale})`;
-            }
-            
-            // Change button text after many attempts
+            // Change button text after many attempts (but don't shrink it to oblivion)
             if (escapeCount === 3) noBtn.textContent = "Nope! 😜";
             if (escapeCount === 6) noBtn.textContent = "Never! 🙈";
-            if (escapeCount === 10) noBtn.textContent = "Just say YES, Baby!";
+            if (escapeCount === 10) noBtn.textContent = "Just say YES!";
+            if (escapeCount > 10) noBtn.textContent = "💕 YES! 💕";
         }
 
         // Celebration function
         function sayYes() {
             document.getElementById('celebration').classList.add('active');
+            noBtn.style.display = 'none'; // Hide the No button when Yes is clicked
             createConfetti();
         }
 
@@ -461,6 +471,15 @@
         noBtn.addEventListener('click', (e) => {
             e.preventDefault();
             moveButton();
+        });
+
+        // Handle window resize to keep button visible
+        window.addEventListener('resize', () => {
+            if (!noBtn.classList.contains('in-card')) {
+                const pos = getSafePosition();
+                noBtn.style.left = pos.x + 'px';
+                noBtn.style.top = pos.y + 'px';
+            }
         });
 
         // Initialize floating hearts
