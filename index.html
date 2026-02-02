@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine? 💕</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>For My Wangari 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -63,18 +63,34 @@
         .valentine-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
-            padding: 50px 40px;
+            padding: 40px 35px;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             z-index: 10;
             position: relative;
             max-width: 90%;
-            width: 450px;
+            width: 500px;
+            margin: 20px;
+        }
+
+        .her-name {
+            font-family: 'Dancing Script', cursive;
+            color: #c0392b;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nickname {
+            font-size: 1rem;
+            color: #e84a5f;
+            margin-bottom: 15px;
+            font-style: italic;
         }
 
         .bear-emoji {
-            font-size: 80px;
-            margin-bottom: 20px;
+            font-size: 70px;
+            margin-bottom: 15px;
             display: block;
             animation: bounce 2s ease-in-out infinite;
         }
@@ -87,9 +103,43 @@
         h1 {
             font-family: 'Pacifico', cursive;
             color: #e84a5f;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .love-message {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e6 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid #e84a5f;
+        }
+
+        .love-message p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: left;
+        }
+
+        .love-message .signature {
+            text-align: right;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #c0392b;
+            margin-top: 15px;
+        }
+
+        .years-together {
+            background: #e84a5f;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .buttons-container {
@@ -148,6 +198,8 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
         }
 
         .celebration.active {
@@ -156,20 +208,45 @@
 
         .celebration h1 {
             color: white;
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             animation: pulse 1s ease-in-out infinite;
         }
 
-        .celebration p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.5rem;
+        .celebration .her-name-celebration {
+            font-family: 'Dancing Script', cursive;
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .celebration .love-note {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 500px;
+            margin: 20px;
+        }
+
+        .celebration .love-note p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
         }
 
         .celebration .hearts-explosion {
-            font-size: 60px;
-            margin-top: 30px;
+            font-size: 50px;
+            margin-top: 25px;
             animation: pulse 0.5s ease-in-out infinite;
+        }
+
+        .celebration .forever {
+            color: #ffd700;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            margin-top: 20px;
         }
 
         @keyframes pulse {
@@ -209,9 +286,12 @@
         /* Responsive */
         @media (max-width: 500px) {
             .valentine-card {
-                padding: 30px 20px;
+                padding: 25px 18px;
             }
             h1 {
+                font-size: 1.6rem;
+            }
+            .her-name {
                 font-size: 1.8rem;
             }
             .btn {
@@ -219,7 +299,16 @@
                 font-size: 1rem;
             }
             .bear-emoji {
-                font-size: 60px;
+                font-size: 50px;
+            }
+            .love-message p {
+                font-size: 0.85rem;
+            }
+            .celebration h1 {
+                font-size: 2rem;
+            }
+            .celebration .love-note p {
+                font-size: 1rem;
             }
         }
     </style>
@@ -231,7 +320,24 @@
     <!-- Main Card -->
     <div class="valentine-card">
         <span class="bear-emoji">🧸💝</span>
+        <h2 class="her-name">Metrine Jane Wangari</h2>
+        <p class="nickname">My Wangari 💕 My Baby</p>
+        <div class="years-together">💑 3.5 Years & Counting...</div>
         <h1>Will You Be My Valentine?</h1>
+        
+        <div class="love-message">
+            <p>
+                Three and a half years ago, you walked into my life and turned ordinary moments into extraordinary memories. 
+                In these 1,277 days together, I've learned that love isn't just grand gestures—it's the way you squeeze my hand when I'm nervous, 
+                how you remember what I love, the sound of your laugh that still gives me butterflies.
+            </p>
+            <p style="margin-top: 12px;">
+                This Valentine's Day, I want to renew the promise I've silently made every morning: to love you deeper, 
+                support you fiercely, and build a future where you never doubt how treasured you are.
+            </p>
+            <div class="signature">~ Forever Yours, Malcom 💌</div>
+        </div>
+        
         <div class="buttons-container">
             <button class="btn btn-yes" onclick="sayYes()">Yes! 💕</button>
             <button class="btn btn-no in-card" id="noBtn">No</button>
@@ -241,9 +347,18 @@
 
     <!-- Celebration Overlay -->
     <div class="celebration" id="celebration">
-        <h1>Yay! 🎉</h1>
-        <p>I knew you'd say yes!</p>
+        <h1>She Said YES! 🎉</h1>
+        <div class="her-name-celebration">My Wangari Forever 💍</div>
+        <div class="love-note">
+            <p>
+                My Baby, you just made me the happiest man alive! 
+                Not just for today, but for all the Valentine's Days yet to come.
+                You are my constant, my compass, my home.
+                Here's to forever choosing each other, every single day. 💕
+            </p>
+        </div>
         <div class="hearts-explosion">💖💕💗💓💝</div>
+        <div class="forever">Together Forever & Always 🌹</div>
     </div>
 
     <script>
@@ -251,24 +366,24 @@
         const escapeCounter = document.getElementById('escapeCounter');
         let escapeCount = 0;
         const funnyMessages = [
-            "Nice try! 😏",
-            "Too slow! 🏃",
-            "Can't catch me! 😜",
-            "Nope! Try again! 😂",
-            "Almost! Not really... 🤭",
-            "Just say YES! 💕",
-            "Why are you even trying? 😅",
-            "Give up already! 💖",
-            "The answer is YES! 🥰",
-            "Stop being stubborn! 😘"
+            "Nice try, My Baby! 😏",
+            "Too slow for your Malcom! 🏃",
+            "Can't escape our love! 😜",
+            "Wangari, just say YES! 😂",
+            "My Baby, come on! 🤭",
+            "3.5 years says YES! 💕",
+            "Our love story needs a YES! 😅",
+            "You know you want to! 💖",
+            "My Wangari, please! 🥰",
+            "Stop playing, My Baby! 😘"
         ];
 
         // Create floating hearts
         function createFloatingHearts() {
             const container = document.getElementById('heartsContainer');
-            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘'];
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '💘', '🌹'];
             
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 25; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'floating-heart';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
@@ -308,8 +423,8 @@
             
             // Change button text after many attempts
             if (escapeCount === 3) noBtn.textContent = "Nope! 😜";
-            if (escapeCount === 6) noBtn.textContent = "Stop it! 🙈";
-            if (escapeCount === 10) noBtn.textContent = "Just say YES!";
+            if (escapeCount === 6) noBtn.textContent = "Never! 🙈";
+            if (escapeCount === 10) noBtn.textContent = "Just say YES, Baby!";
         }
 
         // Celebration function
@@ -320,10 +435,9 @@
 
         // Create confetti
         function createConfetti() {
-            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd'];
-            const shapes = ['❤️', '💕', '✨', '🎉', '💖', '⭐'];
+            const shapes = ['❤️', '💕', '✨', '🎉', '💖', '⭐', '🌹', '💝'];
             
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 150; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -334,7 +448,7 @@
                     
                     // Remove after animation
                     setTimeout(() => confetti.remove(), 4000);
-                }, i * 30);
+                }, i * 25);
             }
         }
 
